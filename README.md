@@ -14,22 +14,18 @@ Great for handling microservice routing from different domains in one single hos
 
 ### Table of Contents
   * [Installation](#installation)
-  * [Upgrading from 0.8.x ?](#upgrading-from-08x-)
   * [Core Concept](#core-concept)
   * [Use Cases](#use-cases)
-    * [Setup a basic stand-alone proxy server](#setup-a-basic-stand-alone-proxy-server)
-    * [Setup a stand-alone proxy server with custom server logic](#setup-a-stand-alone-proxy-server-with-custom-server-logic)
-    * [Setup a stand-alone proxy server with proxy request header re-writing](#setup-a-stand-alone-proxy-server-with-proxy-request-header-re-writing)
-    * [Modify a response from a proxied server](#modify-a-response-from-a-proxied-server)
-    * [Setup a stand-alone proxy server with latency](#setup-a-stand-alone-proxy-server-with-latency)
-    * [Using HTTPS](#using-https)
-    * [Proxying WebSockets](#proxying-websockets)
+    * [Setup a basic HTTP gateway server](#setup-a-basic-http-gateway-server)
+    * [Using HTTPS](#using-https-gateway-server)
+    * [HTTP to HTTPS](#http-to-https-gateway-server)
+    * [Proxying WebSockets](#proxying-websockets-gateway-server)
+    * [Adding Custom Resolvers](#adding-custom-resolvers)
+    * [Docker Support](#docker-support)
   * [Options](#options)
-  * [Listening for proxy events](#listening-for-proxy-events)
   * [Shutdown](#shutdown)
   * [Miscellaneous](#miscellaneous)
     * [Test](#test)
-    * [ProxyTable API](#proxytable-api)
     * [Logo](#logo)
   * [Contributing and Issues](#contributing-and-issues)
   * [License](#license)
@@ -39,3 +35,35 @@ Great for handling microservice routing from different domains in one single hos
 `npm install anchor-gateway --save`
 
 **[Back to top](#table-of-contents)**
+
+### Core Concept
+
+A new gateway is created by calling the AnchorGateway constructor and passing
+an `options` object as argument 
+
+```javascript
+const AnchorGateway = require('anchor-gateway');
+let options = {
+    ...
+}
+
+const gateway = new AnchorGateway(options);
+```
+
+Then it is easy to proxy requests by calling the `init` function with an array
+of objects that must have src and target properties.
+
+````javascript
+
+gateway.init([
+    {
+        src: 'localhost',
+        target: 'http://127.0.0.1:3333
+    },
+        {
+        src: 'localhost/api-2',
+        target: 'http://127.0.0.1:4444
+    }
+])
+
+````
