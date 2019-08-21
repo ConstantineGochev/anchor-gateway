@@ -4,10 +4,7 @@
     "version": "0.1.0",
     "license": "MIT",
     "author": "C.G11",
-    "directories": {
-        "lib": "lib",
-        "test": "test"
-    },
+    "homepage": "https://github.com/ConstantineGochev/anchor-gateway#readme",
     "repository": {
         "type": "git",
         "url": "https://github.com/ConstantineGochev/anchor-gateway"
