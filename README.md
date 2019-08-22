@@ -265,7 +265,7 @@ const gateway = new AnchorGateway({
 
 // remove the resolver after 10 minutes,
 setTimeout(function() {
-  gateway.removeResolver(custom_resolver);
+  gateway.remove_resolver(custom_resolver);
 }, 600000);
 
 ````
