@@ -431,7 +431,7 @@ class AnchorGateway {
 
             if (!route) {
 
-                route = { path: pathname, rr: 0, urls: [] };
+                route = { id: i, path: pathname, rr: 0, urls: [] };
                 host.push(route);
                 //
                 // Sort routes
@@ -447,7 +447,18 @@ class AnchorGateway {
         }
         return this;
     }
-
+    public remove(id:number) {
+        this.routing = _.remove(this.routing,function(o) {
+            o.id === id
+        })
+    }
+    public close () {
+        try {
+            this.server.close()
+        }catch(err) {
+            console.log('Error closing server', err)
+        }
+    }
 
     private respond_not_found(req, res) {
         res.statusCode = 404;
