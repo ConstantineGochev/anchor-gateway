@@ -1,7 +1,7 @@
 {
   "name": "anchor-gateway",
   "description": "very simple microservice gateway",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "license": "MIT",
   "author": "C.G11",
   "homepage": "https://github.com/ConstantineGochev/anchor-gateway#readme",
@@ -10,7 +10,7 @@
     "url": "https://github.com/ConstantineGochev/anchor-gateway"
   },
   "scripts": {
-    "build": "gulp",
+    "build": "node index.js",
     "prepare": "npm run test && npm run build",
     "test": "mocha test/* --reporter spec"
   },
